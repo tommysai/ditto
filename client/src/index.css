@@ -1,0 +1,272 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* 
+ * 数字职工 - 赛博朋克企业感设计系统
+ * Design Movement: Cyberpunk Corporate × Futurism
+ * Color: 深夜黑底 #080C14 + 电光蓝 #0EA5E9 + 青色 #06B6D4
+ * Typography: Sora (headings) + Noto Sans SC (body) + JetBrains Mono (code)
+ * Signature: 切角几何 + 霓虹发光边框 + 扫描线纹理
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.25rem;
+  /* 深夜黑底 */
+  --background: oklch(0.08 0.015 250);
+  --foreground: oklch(0.92 0.01 220);
+  /* 卡片 - 略浅的深色 */
+  --card: oklch(0.12 0.018 250);
+  --card-foreground: oklch(0.92 0.01 220);
+  --popover: oklch(0.12 0.018 250);
+  --popover-foreground: oklch(0.92 0.01 220);
+  /* 电光蓝主色 */
+  --primary: oklch(0.65 0.2 220);
+  --primary-foreground: oklch(0.08 0.015 250);
+  /* 次要色 */
+  --secondary: oklch(0.16 0.02 250);
+  --secondary-foreground: oklch(0.75 0.015 220);
+  /* 静音色 */
+  --muted: oklch(0.14 0.015 250);
+  --muted-foreground: oklch(0.55 0.02 220);
+  /* 强调色 - 青色 */
+  --accent: oklch(0.65 0.18 200);
+  --accent-foreground: oklch(0.08 0.015 250);
+  /* 危险色 */
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  /* 边框 */
+  --border: oklch(0.25 0.03 240);
+  --input: oklch(0.2 0.025 240);
+  --ring: oklch(0.65 0.2 220);
+  /* 图表色 */
+  --chart-1: oklch(0.65 0.2 220);
+  --chart-2: oklch(0.65 0.18 200);
+  --chart-3: oklch(0.55 0.15 260);
+  --chart-4: oklch(0.75 0.12 150);
+  --chart-5: oklch(0.7 0.18 30);
+  /* 侧边栏 */
+  --sidebar: oklch(0.1 0.018 250);
+  --sidebar-foreground: oklch(0.85 0.01 220);
+  --sidebar-primary: oklch(0.65 0.2 220);
+  --sidebar-primary-foreground: oklch(0.08 0.015 250);
+  --sidebar-accent: oklch(0.16 0.02 250);
+  --sidebar-accent-foreground: oklch(0.85 0.01 220);
+  --sidebar-border: oklch(0.22 0.025 240);
+  --sidebar-ring: oklch(0.65 0.2 220);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sora', 'Noto Sans SC', sans-serif;
+  }
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* 切角卡片 - 赛博朋克签名元素 */
+  .clip-card {
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  }
+
+  .clip-card-lg {
+    clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 24px 100%, 0 calc(100% - 24px));
+  }
+
+  .clip-card-sm {
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  }
+
+  /* 霓虹发光效果 */
+  .glow-blue {
+    box-shadow: 0 0 20px oklch(0.65 0.2 220 / 0.4), 0 0 40px oklch(0.65 0.2 220 / 0.2);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 20px oklch(0.65 0.18 200 / 0.4), 0 0 40px oklch(0.65 0.18 200 / 0.2);
+  }
+
+  .text-glow-blue {
+    text-shadow: 0 0 20px oklch(0.65 0.2 220 / 0.8);
+  }
+
+  .text-glow-cyan {
+    text-shadow: 0 0 20px oklch(0.65 0.18 200 / 0.8);
+  }
+
+  /* 扫描线背景纹理 */
+  .scanlines {
+    background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      oklch(0 0 0 / 0.03) 2px,
+      oklch(0 0 0 / 0.03) 4px
+    );
+  }
+
+  /* 网格背景 */
+  .grid-bg {
+    background-image: 
+      linear-gradient(oklch(0.65 0.2 220 / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.65 0.2 220 / 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* 霓虹边框 */
+  .neon-border {
+    border: 1px solid oklch(0.65 0.2 220 / 0.5);
+    box-shadow: inset 0 0 20px oklch(0.65 0.2 220 / 0.05), 0 0 20px oklch(0.65 0.2 220 / 0.1);
+  }
+
+  .neon-border-cyan {
+    border: 1px solid oklch(0.65 0.18 200 / 0.5);
+    box-shadow: inset 0 0 20px oklch(0.65 0.18 200 / 0.05), 0 0 20px oklch(0.65 0.18 200 / 0.1);
+  }
+
+  /* 渐变文字 */
+  .gradient-text {
+    background: linear-gradient(135deg, oklch(0.75 0.2 220), oklch(0.7 0.18 200));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-warm {
+    background: linear-gradient(135deg, oklch(0.75 0.2 220), oklch(0.7 0.15 260));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* 状态指示器 */
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: oklch(0.7 0.22 150);
+    box-shadow: 0 0 8px oklch(0.7 0.22 150);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; box-shadow: 0 0 8px oklch(0.7 0.22 150); }
+    50% { opacity: 0.6; box-shadow: 0 0 16px oklch(0.7 0.22 150); }
+  }
+
+  /* 数字标签 */
+  .number-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: oklch(0.65 0.2 220 / 0.6);
+    letter-spacing: 0.1em;
+  }
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(0.08 0.015 250);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0.05 240);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.65 0.2 220 / 0.6);
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
